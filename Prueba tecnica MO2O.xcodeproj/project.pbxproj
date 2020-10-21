@@ -13,6 +13,8 @@
 		F0ED3FBC25402FD0004D4E84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0ED3FBA25402FD0004D4E84 /* LaunchScreen.storyboard */; };
 		F0ED3FC725402FD0004D4E84 /* Prueba_tecnica_MO2OTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ED3FC625402FD0004D4E84 /* Prueba_tecnica_MO2OTests.swift */; };
 		F0ED3FD225402FD0004D4E84 /* Prueba_tecnica_MO2OUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ED3FD125402FD0004D4E84 /* Prueba_tecnica_MO2OUITests.swift */; };
+		F0ED3FEB254032CA004D4E84 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ED3FEA254032CA004D4E84 /* Coordinator.swift */; };
+		F0ED3FF0254032EA004D4E84 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ED3FEF254032EA004D4E84 /* MainCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,8 @@
 		F0ED3FCD25402FD0004D4E84 /* Prueba tecnica MO2OUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Prueba tecnica MO2OUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0ED3FD125402FD0004D4E84 /* Prueba_tecnica_MO2OUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prueba_tecnica_MO2OUITests.swift; sourceTree = "<group>"; };
 		F0ED3FD325402FD0004D4E84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F0ED3FEA254032CA004D4E84 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		F0ED3FEF254032EA004D4E84 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +99,10 @@
 		F0ED3FAE25402FCD004D4E84 /* Prueba tecnica MO2O */ = {
 			isa = PBXGroup;
 			children = (
+				F0ED3FE9254032B8004D4E84 /* Common */,
 				F0ED3FAF25402FCE004D4E84 /* AppDelegate.swift */,
 				F0ED3FB125402FCE004D4E84 /* SceneDelegate.swift */,
+				F0ED3FEF254032EA004D4E84 /* MainCoordinator.swift */,
 				F0ED3FB825402FD0004D4E84 /* Assets.xcassets */,
 				F0ED3FBA25402FD0004D4E84 /* LaunchScreen.storyboard */,
 				F0ED3FBD25402FD0004D4E84 /* Info.plist */,
@@ -120,6 +126,14 @@
 				F0ED3FD325402FD0004D4E84 /* Info.plist */,
 			);
 			path = "Prueba tecnica MO2OUITests";
+			sourceTree = "<group>";
+		};
+		F0ED3FE9254032B8004D4E84 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				F0ED3FEA254032CA004D4E84 /* Coordinator.swift */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,7 +266,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0ED3FB025402FCE004D4E84 /* AppDelegate.swift in Sources */,
+				F0ED3FF0254032EA004D4E84 /* MainCoordinator.swift in Sources */,
 				F0ED3FB225402FCE004D4E84 /* SceneDelegate.swift in Sources */,
+				F0ED3FEB254032CA004D4E84 /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
