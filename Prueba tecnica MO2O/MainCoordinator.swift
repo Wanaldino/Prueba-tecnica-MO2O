@@ -15,6 +15,12 @@ class MainCoordinator: Coordinator {
     }
 
     func start() {
-        
+        goToSearch()
+    }
+    
+    func goToSearch() {
+        let builder = BeerSearchBuilder()
+        let viewController = builder.build()
+        navigator.pushViewController(viewController, animated: true)
     }
 }

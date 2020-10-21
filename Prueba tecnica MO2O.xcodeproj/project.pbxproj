@@ -15,6 +15,9 @@
 		F0ED3FD225402FD0004D4E84 /* Prueba_tecnica_MO2OUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ED3FD125402FD0004D4E84 /* Prueba_tecnica_MO2OUITests.swift */; };
 		F0ED3FEB254032CA004D4E84 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ED3FEA254032CA004D4E84 /* Coordinator.swift */; };
 		F0ED3FF0254032EA004D4E84 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ED3FEF254032EA004D4E84 /* MainCoordinator.swift */; };
+		F0ED3FF52540336D004D4E84 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ED3FF42540336D004D4E84 /* Builder.swift */; };
+		F0ED3FFD25403396004D4E84 /* BeerSearchBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ED3FFC25403396004D4E84 /* BeerSearchBuilder.swift */; };
+		F0ED4005254033AE004D4E84 /* BeerSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ED4004254033AE004D4E84 /* BeerSearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		F0ED3FD325402FD0004D4E84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0ED3FEA254032CA004D4E84 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		F0ED3FEF254032EA004D4E84 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		F0ED3FF42540336D004D4E84 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
+		F0ED3FFC25403396004D4E84 /* BeerSearchBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerSearchBuilder.swift; sourceTree = "<group>"; };
+		F0ED4004254033AE004D4E84 /* BeerSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerSearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				F0ED3FE9254032B8004D4E84 /* Common */,
+				F0ED3FF925403374004D4E84 /* BeerSearch */,
 				F0ED3FAF25402FCE004D4E84 /* AppDelegate.swift */,
 				F0ED3FB125402FCE004D4E84 /* SceneDelegate.swift */,
 				F0ED3FEF254032EA004D4E84 /* MainCoordinator.swift */,
@@ -132,8 +139,34 @@
 			isa = PBXGroup;
 			children = (
 				F0ED3FEA254032CA004D4E84 /* Coordinator.swift */,
+				F0ED3FF42540336D004D4E84 /* Builder.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		F0ED3FF925403374004D4E84 /* BeerSearch */ = {
+			isa = PBXGroup;
+			children = (
+				F0ED3FFB25403384004D4E84 /* View */,
+				F0ED3FFA2540337D004D4E84 /* Builder */,
+			);
+			path = BeerSearch;
+			sourceTree = "<group>";
+		};
+		F0ED3FFA2540337D004D4E84 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
+				F0ED3FFC25403396004D4E84 /* BeerSearchBuilder.swift */,
+			);
+			path = Builder;
+			sourceTree = "<group>";
+		};
+		F0ED3FFB25403384004D4E84 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F0ED4004254033AE004D4E84 /* BeerSearchViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,9 +299,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0ED3FB025402FCE004D4E84 /* AppDelegate.swift in Sources */,
+				F0ED3FFD25403396004D4E84 /* BeerSearchBuilder.swift in Sources */,
 				F0ED3FF0254032EA004D4E84 /* MainCoordinator.swift in Sources */,
 				F0ED3FB225402FCE004D4E84 /* SceneDelegate.swift in Sources */,
+				F0ED4005254033AE004D4E84 /* BeerSearchViewController.swift in Sources */,
 				F0ED3FEB254032CA004D4E84 /* Coordinator.swift in Sources */,
+				F0ED3FF52540336D004D4E84 /* Builder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
