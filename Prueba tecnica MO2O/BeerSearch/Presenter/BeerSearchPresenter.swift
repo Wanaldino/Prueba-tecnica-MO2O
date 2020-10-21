@@ -11,7 +11,6 @@ class BeerSearchPresenter: NSObject {
     weak var view: BeerSearchViewProtocol?
     let interactor: BeerSearchInteractorProtocol
     
-    var foodText = ""
     var beerModels = [BeerSearchCell]()
     
     init(interactor: BeerSearchInteractorProtocol) {
@@ -19,7 +18,7 @@ class BeerSearchPresenter: NSObject {
     }
     
     func getBeers() {
-        interactor.getBeers(for: foodText) { [weak self] (result) in
+        interactor.getBeers() { [weak self] (result) in
             switch result {
             case .success(let beers):
                 self?.saveBeers(beers)
@@ -34,7 +33,7 @@ class BeerSearchPresenter: NSObject {
         if self.beerModels.count == 0 && beers.count == 0 {
             beerModels.append(.title("No results"))
         } else {
-            beerModels = beers.compactMap { (beer) -> BeerSearchCell? in
+            let models = beers.compactMap { (beer) -> BeerSearchCell? in
                 let alcoholText = String(format: "Alcohol: %.2f%%", beer.alcoholByVolume)
                 let model = BeerTableViewCellModel(
                     image: beer.image,
@@ -43,6 +42,7 @@ class BeerSearchPresenter: NSObject {
                 )
                 return .beer(model)
             }
+            beerModels.append(contentsOf: models)
         }
     }
 }
@@ -70,13 +70,18 @@ extension BeerSearchPresenter: BeerSearchPresenterProtocol {
             return beerModels[indexPath.row]
         }
     }
+    
+    func didScrollToBottom() {
+        getBeers()
+    }
 }
 
 extension BeerSearchPresenter: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.foodText = searchText
         self.beerModels.removeAll()
         self.view?.refresh()
+        
+        interactor.updateFood(searchText)
         getBeers()
     }
 }

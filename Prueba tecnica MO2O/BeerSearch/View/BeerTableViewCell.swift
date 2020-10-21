@@ -72,11 +72,13 @@ class BeerTableViewCell: UITableViewCell {
     
     private func addImage(of url: URL?) {
         beerImageView.image = nil
-        DispatchQueue.global().async {
-            guard let url = url, let imageData = try? Data(contentsOf: url), let image = UIImage(data: imageData) else { return }
-            DispatchQueue.main.async { [weak self] in
-                self?.beerImageView.image = image
-            }
+        beerImageView.isHidden = true
+        
+        guard let url = url else { return }
+        ImageDownloader.default.downloadImage(at: url) { [weak self] (data) in
+            guard let image = UIImage(data: data) else { return }
+            self?.beerImageView.image = image
+            self?.beerImageView.isHidden = false
         }
     }
 }

@@ -8,5 +8,6 @@
 import Foundation
 
 protocol BeerSearchInteractorProtocol: class {
-    func getBeers(for food: String, completion: @escaping (Result<[Beer], Error>) -> Void)
+    func updateFood(_ food: String)
+    func getBeers(completion: @escaping (Result<[Beer], Error>) -> Void)
 }

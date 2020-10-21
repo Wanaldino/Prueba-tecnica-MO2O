@@ -35,7 +35,6 @@ class BeerSearchViewController: UITableViewController {
         super.loadView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
         tableView.register(BeerTableViewCell.self, forCellReuseIdentifier: "BeerTableViewCell")
-        tableView.tableHeaderView = searchView
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +44,10 @@ class BeerSearchViewController: UITableViewController {
     
     func setUpNavigation() {
         title = viewModel.title
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        searchView
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,6 +69,12 @@ class BeerSearchViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
             cell.textLabel?.text = "Loading..."
             return cell
+        }
+    }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentSize.height - scrollView.frame.height - scrollView.contentOffset.y < 100 {
+            presenter.didScrollToBottom()
         }
     }
 }
