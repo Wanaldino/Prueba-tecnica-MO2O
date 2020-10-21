@@ -7,6 +7,12 @@
 
 import UIKit
 
+struct BeerTableViewCellModel {
+    let image: URL?
+    let name: String
+    let alcoholText: String
+}
+
 class BeerTableViewCell: UITableViewCell {
     lazy var mainStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
@@ -19,7 +25,6 @@ class BeerTableViewCell: UITableViewCell {
     
     let beerImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "square.and.pencil")
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
         NSLayoutConstraint.activate([
@@ -57,5 +62,21 @@ class BeerTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func config(with model: BeerTableViewCellModel) {
+        self.nameLabel.text = model.name
+        self.alcoholLabel.text = model.alcoholText
+        addImage(of: model.image)
+    }
+    
+    private func addImage(of url: URL?) {
+        beerImageView.image = nil
+        DispatchQueue.global().async {
+            guard let url = url, let imageData = try? Data(contentsOf: url), let image = UIImage(data: imageData) else { return }
+            DispatchQueue.main.async { [weak self] in
+                self?.beerImageView.image = image
+            }
+        }
     }
 }

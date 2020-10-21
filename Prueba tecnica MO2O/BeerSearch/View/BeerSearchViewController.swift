@@ -54,8 +54,10 @@ class BeerSearchViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = presenter.modelForCell(at: indexPath)
         switch model {
-        case .beer:
-            return tableView.dequeueReusableCell(withIdentifier: "BeerTableViewCell", for: indexPath)
+        case .beer(let model):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "BeerTableViewCell", for: indexPath) as! BeerTableViewCell
+            cell.config(with: model)
+            return cell
         case .title(let title):
             let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
             cell.textLabel?.text = title

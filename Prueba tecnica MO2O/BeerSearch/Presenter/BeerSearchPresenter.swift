@@ -19,17 +19,29 @@ class BeerSearchPresenter: NSObject {
     }
     
     func getBeers() {
-        interactor.getBeers(for: foodText) { (result) in
+        interactor.getBeers(for: foodText) { [weak self] (result) in
             switch result {
             case .success(let beers):
-                if self.beerModels.count == 0 && beers.count == 0 {
-                    self.beerModels.append(.title("No results"))
-                } else {
-                    beers.forEach({ _ in self.beerModels.append(.beer) })
-                }
-                self.view?.refresh()
+                self?.saveBeers(beers)
+                self?.view?.refresh()
             case .failure(let error):
                 break
+            }
+        }
+    }
+    
+    func saveBeers(_ beers: [Beer]) {
+        if self.beerModels.count == 0 && beers.count == 0 {
+            beerModels.append(.title("No results"))
+        } else {
+            beerModels = beers.compactMap { (beer) -> BeerSearchCell? in
+                let alcoholText = String(format: "Alcohol: %.2f%%", beer.alcoholByVolume)
+                let model = BeerTableViewCellModel(
+                    image: beer.image,
+                    name: beer.name,
+                    alcoholText: alcoholText
+                )
+                return .beer(model)
             }
         }
     }

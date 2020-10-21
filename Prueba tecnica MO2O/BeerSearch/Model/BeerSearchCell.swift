@@ -8,7 +8,7 @@
 import Foundation
 
 enum BeerSearchCell {
-    case beer
+    case beer(BeerTableViewCellModel)
     case loading
     case title(String)
 }
