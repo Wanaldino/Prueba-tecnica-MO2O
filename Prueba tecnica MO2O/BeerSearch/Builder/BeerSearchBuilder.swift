@@ -9,7 +9,12 @@ import UIKit
 
 class BeerSearchBuilder: Builder {
     func build() -> UIViewController {
-        let viewController = BeerSearchViewController()
+        let dataManager = BeerSearchDataManager()
+        let interactor = BeerSearchInteractor(dataManager: dataManager)
+        let presenter = BeerSearchPresenter(interactor: interactor)
+        let viewController = BeerSearchViewController(presenter: presenter)
+        
+        presenter.view = viewController
         
         return viewController
     }

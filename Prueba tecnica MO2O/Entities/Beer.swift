@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BeerSearch: Codable {
+struct Beer: Codable {
     let id: Int
     let name: String
     let image: URL?
