@@ -20,6 +20,7 @@ class BeerTableViewCell: UITableViewCell {
             nameLabel,
             alcoholLabel
         ])
+        stackView.spacing = 10
         return stackView
     }()
     
@@ -28,22 +29,21 @@ class BeerTableViewCell: UITableViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
         NSLayoutConstraint.activate([
-            imageView.heightAnchor.constraint(equalToConstant: 32),
-            imageView.widthAnchor.constraint(equalToConstant: 32)
+            imageView.heightAnchor.constraint(equalToConstant: 64),
+            imageView.widthAnchor.constraint(equalToConstant: 64)
         ])
         return imageView
     }()
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Punk IPA 2007 - 2010"
+        label.setContentHuggingPriority(.defaultLow, for: .horizontal)
         label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }()
     
     let alcoholLabel: UILabel = {
         let label = UILabel()
-        label.text = "Alcohol: 4.5%"
         label.textAlignment = .right
         label.font = UIFont.italicSystemFont(ofSize: 16)
         return label
