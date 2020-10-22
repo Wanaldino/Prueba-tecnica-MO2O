@@ -65,10 +65,6 @@ class BeerSearchViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
             cell.textLabel?.text = title
             return cell
-        case .loading:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
-            cell.textLabel?.text = "Loading..."
-            return cell
         }
     }
     

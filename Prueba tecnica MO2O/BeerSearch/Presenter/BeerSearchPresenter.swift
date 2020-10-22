@@ -56,7 +56,7 @@ extension BeerSearchPresenter: BeerSearchPresenterProtocol {
     
     func modelForCell(at indexPath: IndexPath) -> BeerSearchCell {
         if interactor.numberOfBeers() == 0 {
-            return .loading
+            return .title("Loading...")
         } else {
             let beer = interactor.getBeer(at: indexPath.row)
             return transform(beer: beer)

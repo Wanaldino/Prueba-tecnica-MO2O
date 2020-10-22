@@ -12,6 +12,9 @@
 		F0B835B8254183300039C52B /* BeerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B835B7254183300039C52B /* BeerDetailViewController.swift */; };
 		F0B835CF25418F050039C52B /* BeerDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B835CE25418F050039C52B /* BeerDetailViewModel.swift */; };
 		F0B835D72541931E0039C52B /* Volume.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B835D62541931E0039C52B /* Volume.swift */; };
+		F0B835DC2541CEE60039C52B /* ImageDownloaderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B835DB2541CEE60039C52B /* ImageDownloaderTest.swift */; };
+		F0B835E52541D02A0039C52B /* BeerSearchInteractorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B835E42541D02A0039C52B /* BeerSearchInteractorMock.swift */; };
+		F0B835ED2541D0D60039C52B /* BeerSearchPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B835EC2541D0D60039C52B /* BeerSearchPresenterTest.swift */; };
 		F0ED3FB025402FCE004D4E84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ED3FAF25402FCE004D4E84 /* AppDelegate.swift */; };
 		F0ED3FB225402FCE004D4E84 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ED3FB125402FCE004D4E84 /* SceneDelegate.swift */; };
 		F0ED3FB925402FD0004D4E84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0ED3FB825402FD0004D4E84 /* Assets.xcassets */; };
@@ -61,6 +64,9 @@
 		F0B835B7254183300039C52B /* BeerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerDetailViewController.swift; sourceTree = "<group>"; };
 		F0B835CE25418F050039C52B /* BeerDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerDetailViewModel.swift; sourceTree = "<group>"; };
 		F0B835D62541931E0039C52B /* Volume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Volume.swift; sourceTree = "<group>"; };
+		F0B835DB2541CEE60039C52B /* ImageDownloaderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloaderTest.swift; sourceTree = "<group>"; };
+		F0B835E42541D02A0039C52B /* BeerSearchInteractorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerSearchInteractorMock.swift; sourceTree = "<group>"; };
+		F0B835EC2541D0D60039C52B /* BeerSearchPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerSearchPresenterTest.swift; sourceTree = "<group>"; };
 		F0ED3FAC25402FCD004D4E84 /* Prueba tecnica MO2O.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Prueba tecnica MO2O.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0ED3FAF25402FCE004D4E84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0ED3FB125402FCE004D4E84 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -144,6 +150,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		F0B835E32541D01A0039C52B /* BeerSearch */ = {
+			isa = PBXGroup;
+			children = (
+				F0B835E42541D02A0039C52B /* BeerSearchInteractorMock.swift */,
+				F0B835EC2541D0D60039C52B /* BeerSearchPresenterTest.swift */,
+			);
+			path = BeerSearch;
+			sourceTree = "<group>";
+		};
 		F0ED3FA325402FCD004D4E84 = {
 			isa = PBXGroup;
 			children = (
@@ -185,8 +200,10 @@
 		F0ED3FC525402FD0004D4E84 /* Prueba tecnica MO2OTests */ = {
 			isa = PBXGroup;
 			children = (
+				F0B835E32541D01A0039C52B /* BeerSearch */,
 				F0ED3FC625402FD0004D4E84 /* Prueba_tecnica_MO2OTests.swift */,
 				F0ED3FC825402FD0004D4E84 /* Info.plist */,
+				F0B835DB2541CEE60039C52B /* ImageDownloaderTest.swift */,
 			);
 			path = "Prueba tecnica MO2OTests";
 			sourceTree = "<group>";
@@ -456,7 +473,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0B835ED2541D0D60039C52B /* BeerSearchPresenterTest.swift in Sources */,
 				F0ED3FC725402FD0004D4E84 /* Prueba_tecnica_MO2OTests.swift in Sources */,
+				F0B835E52541D02A0039C52B /* BeerSearchInteractorMock.swift in Sources */,
+				F0B835DC2541CEE60039C52B /* ImageDownloaderTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -46,3 +46,15 @@ struct Beer: Codable {
         case volume
     }
 }
+
+extension Beer {
+    init(id: Int, name: String, description: String, image: URL?, alcoholByVolume: Double, firstBrewed: Date?, volume: Amount) {
+        self.id = id
+        self.name = name
+        self.description = description
+        self.image = image
+        self.alcoholByVolume = alcoholByVolume
+        self.firstBrewed = firstBrewed
+        self.volume = volume
+    }
+}
