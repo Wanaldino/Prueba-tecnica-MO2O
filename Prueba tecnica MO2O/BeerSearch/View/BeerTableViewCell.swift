@@ -24,24 +24,28 @@ class BeerTableViewCell: UITableViewCell {
         infoStackView.axis = .vertical
         infoStackView.spacing = 4
         
-        let imageContainer = UIView()
-        imageContainer.translatesAutoresizingMaskIntoConstraints = false
-        imageContainer.addSubview(beerImageView)
-        NSLayoutConstraint.activate([
-            imageContainer.topAnchor.constraint(lessThanOrEqualTo: beerImageView.topAnchor, constant: 0),
-            imageContainer.bottomAnchor.constraint(greaterThanOrEqualTo: beerImageView.bottomAnchor, constant: 0),
-            imageContainer.leadingAnchor.constraint(equalTo: beerImageView.leadingAnchor),
-            imageContainer.trailingAnchor.constraint(equalTo: beerImageView.trailingAnchor),
-            imageContainer.centerYAnchor.constraint(equalTo: beerImageView.centerYAnchor)
-        ])
+        
         let stackView = UIStackView(arrangedSubviews: [
-            imageContainer,
+            beerImageContainer,
             infoStackView
         ])
         stackView.spacing = 10
         return stackView
     }()
     
+    lazy var beerImageContainer: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(beerImageView)
+        NSLayoutConstraint.activate([
+            view.topAnchor.constraint(lessThanOrEqualTo: beerImageView.topAnchor, constant: 0),
+            view.bottomAnchor.constraint(greaterThanOrEqualTo: beerImageView.bottomAnchor, constant: 0),
+            view.leadingAnchor.constraint(equalTo: beerImageView.leadingAnchor),
+            view.trailingAnchor.constraint(equalTo: beerImageView.trailingAnchor),
+            view.centerYAnchor.constraint(equalTo: beerImageView.centerYAnchor)
+        ])
+        return view
+    }()
     let beerImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -94,13 +98,13 @@ class BeerTableViewCell: UITableViewCell {
     
     private func addImage(of url: URL?) {
         beerImageView.image = nil
-        beerImageView.isHidden = true
+        beerImageContainer.isHidden = true
         
         guard let url = url else { return }
         ImageDownloader.default.downloadImage(at: url) { [weak self] (data) in
             guard let image = UIImage(data: data) else { return }
             self?.beerImageView.image = image
-            self?.beerImageView.isHidden = false
+            self?.beerImageContainer.isHidden = false
         }
     }
 }

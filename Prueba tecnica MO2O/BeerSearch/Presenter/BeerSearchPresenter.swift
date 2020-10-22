@@ -10,41 +10,31 @@ import UIKit
 class BeerSearchPresenter: NSObject {
     weak var view: BeerSearchViewProtocol?
     let interactor: BeerSearchInteractorProtocol
+    let coordinatorOutput: (Beer) -> Void
     
-    var beerModels = [BeerSearchCell]()
-    
-    init(interactor: BeerSearchInteractorProtocol) {
+    init(interactor: BeerSearchInteractorProtocol, coordinatorOutput: @escaping (Beer) -> Void) {
         self.interactor = interactor
+        self.coordinatorOutput = coordinatorOutput
     }
     
-    func getBeers() {
-        interactor.getBeers() { [weak self] (result) in
-            switch result {
-            case .success(let beers):
-                self?.saveBeers(beers)
-                self?.view?.refresh()
-            case .failure(let error):
-                break
-            }
+    func getBeersCompletion(_ result: Result<Void, Error>) {
+        switch result {
+        case .success:
+            view?.refresh()
+        case .failure(let error):
+            break
         }
     }
     
-    func saveBeers(_ beers: [Beer]) {
-        if self.beerModels.count == 0 && beers.count == 0 {
-            beerModels.append(.title("No results"))
-        } else {
-            let models = beers.compactMap { (beer) -> BeerSearchCell? in
-                let alcoholText = String(format: "Alcohol: %.2f%%", beer.alcoholByVolume)
-                let model = BeerTableViewCellModel(
-                    image: beer.image,
-                    name: beer.name,
-                    description: beer.description,
-                    alcoholText: alcoholText
-                )
-                return .beer(model)
-            }
-            beerModels.append(contentsOf: models)
-        }
+    func transform(beer: Beer) -> BeerSearchCell {
+        let alcoholText = String(format: "Alcohol: %.2f%%", beer.alcoholByVolume)
+        let model = BeerTableViewCellModel(
+            image: beer.image,
+            name: beer.name,
+            description: beer.description,
+            alcoholText: alcoholText
+        )
+        return .beer(model)
     }
 }
 
@@ -57,32 +47,35 @@ extension BeerSearchPresenter: BeerSearchPresenterProtocol {
     }
     
     func viewDidLoad() {
-        getBeers()
+        interactor.getBeers(completion: getBeersCompletion)
     }
     
     func numberOfRowsInSection(_ section: Int) -> Int {
-        max(1, beerModels.count)
+        max(1, interactor.numberOfBeers())
     }
     
     func modelForCell(at indexPath: IndexPath) -> BeerSearchCell {
-        if beerModels.count == 0 {
+        if interactor.numberOfBeers() == 0 {
             return .loading
         } else {
-            return beerModels[indexPath.row]
+            let beer = interactor.getBeer(at: indexPath.row)
+            return transform(beer: beer)
         }
     }
     
+    func didTapCell(at indexPath: IndexPath) {
+        let beer = interactor.getBeer(at: indexPath.row)
+        coordinatorOutput(beer)
+    }
+    
     func didScrollToBottom() {
-        getBeers()
+        interactor.getBeers(completion: getBeersCompletion)
     }
 }
 
 extension BeerSearchPresenter: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.beerModels.removeAll()
-        self.view?.refresh()
-        
-        interactor.updateFood(searchText)
-        getBeers()
+        interactor.updateFood(searchText, completion: getBeersCompletion)
+        view?.refresh()
     }
 }

@@ -13,6 +13,8 @@ struct Beer: Codable {
     let description: String
     let image: URL?
     let alcoholByVolume: Double
+    let firstBrewed: Date?
+    let volume: Amount
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
@@ -26,6 +28,12 @@ struct Beer: Codable {
             image = nil
         }
         alcoholByVolume = try values.decode(Double.self, forKey: .alcoholByVolume)
+        
+        let firstBrewedDate = try values.decode(String.self, forKey: .firstBrewed)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/yyyy"
+        firstBrewed = dateFormatter.date(from: firstBrewedDate)
+        volume = try values.decode(Amount.self, forKey: .volume)
     }
     
     enum CodingKeys: String, CodingKey {
@@ -34,5 +42,7 @@ struct Beer: Codable {
         case description
         case image = "image_url"
         case alcoholByVolume = "abv"
+        case firstBrewed = "first_brewed"
+        case volume
     }
 }

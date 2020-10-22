@@ -72,6 +72,11 @@ class BeerSearchViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.didTapCell(at: indexPath)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentSize.height - scrollView.frame.height - scrollView.contentOffset.y < 100 {
             presenter.didScrollToBottom()

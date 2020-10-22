@@ -19,7 +19,15 @@ class MainCoordinator: Coordinator {
     }
     
     func goToSearch() {
-        let builder = BeerSearchBuilder()
+        let builder = BeerSearchBuilder { (beer) in
+            self.goToDetail(of: beer)
+        }
+        let viewController = builder.build()
+        navigator.pushViewController(viewController, animated: true)
+    }
+    
+    func goToDetail(of beer: Beer) {
+        let builder = BeerDetailBuilder(beer: beer)
         let viewController = builder.build()
         navigator.pushViewController(viewController, animated: true)
     }

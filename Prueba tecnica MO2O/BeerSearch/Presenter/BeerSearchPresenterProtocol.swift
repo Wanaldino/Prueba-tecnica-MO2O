@@ -12,5 +12,6 @@ protocol BeerSearchPresenterProtocol {
     func viewDidLoad()
     func numberOfRowsInSection(_ section: Int) -> Int
     func modelForCell(at indexPath: IndexPath) -> BeerSearchCell
+    func didTapCell(at indexPath: IndexPath)
     func didScrollToBottom()
 }
