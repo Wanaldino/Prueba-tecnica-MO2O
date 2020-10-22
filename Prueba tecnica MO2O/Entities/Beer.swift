@@ -10,6 +10,7 @@ import Foundation
 struct Beer: Codable {
     let id: Int
     let name: String
+    let description: String
     let image: URL?
     let alcoholByVolume: Double
     
@@ -18,6 +19,7 @@ struct Beer: Codable {
         
         id = try values.decode(Int.self, forKey: .id)
         name = try values.decode(String.self, forKey: .name)
+        description = try values.decode(String.self, forKey: .description)
         if let imageString = try? values.decode(String.self, forKey: .image) {
             image = URL(string: imageString)
         } else {
@@ -29,6 +31,7 @@ struct Beer: Codable {
     enum CodingKeys: String, CodingKey {
         case id
         case name
+        case description
         case image = "image_url"
         case alcoholByVolume = "abv"
     }

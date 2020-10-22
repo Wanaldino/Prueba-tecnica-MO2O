@@ -10,15 +10,33 @@ import UIKit
 struct BeerTableViewCellModel {
     let image: URL?
     let name: String
+    let description: String
     let alcoholText: String
 }
 
 class BeerTableViewCell: UITableViewCell {
     lazy var mainStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [
-            beerImageView,
+        let infoStackView = UIStackView(arrangedSubviews: [
             nameLabel,
+            descriptionLabel,
             alcoholLabel
+        ])
+        infoStackView.axis = .vertical
+        infoStackView.spacing = 4
+        
+        let imageContainer = UIView()
+        imageContainer.translatesAutoresizingMaskIntoConstraints = false
+        imageContainer.addSubview(beerImageView)
+        NSLayoutConstraint.activate([
+            imageContainer.topAnchor.constraint(lessThanOrEqualTo: beerImageView.topAnchor, constant: 0),
+            imageContainer.bottomAnchor.constraint(greaterThanOrEqualTo: beerImageView.bottomAnchor, constant: 0),
+            imageContainer.leadingAnchor.constraint(equalTo: beerImageView.leadingAnchor),
+            imageContainer.trailingAnchor.constraint(equalTo: beerImageView.trailingAnchor),
+            imageContainer.centerYAnchor.constraint(equalTo: beerImageView.centerYAnchor)
+        ])
+        let stackView = UIStackView(arrangedSubviews: [
+            imageContainer,
+            infoStackView
         ])
         stackView.spacing = 10
         return stackView
@@ -26,8 +44,10 @@ class BeerTableViewCell: UITableViewCell {
     
     let beerImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
         imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 4
         NSLayoutConstraint.activate([
             imageView.heightAnchor.constraint(equalToConstant: 64),
             imageView.widthAnchor.constraint(equalToConstant: 64)
@@ -37,8 +57,15 @@ class BeerTableViewCell: UITableViewCell {
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        label.numberOfLines = 2
         label.font = UIFont.boldSystemFont(ofSize: 16)
+        return label
+    }()
+    
+    let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 5
+        label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()
     
@@ -48,12 +75,6 @@ class BeerTableViewCell: UITableViewCell {
         label.font = UIFont.italicSystemFont(ofSize: 16)
         return label
     }()
-    
-    override func layoutSublayers(of layer: CALayer) {
-        if layer == beerImageView.layer {
-            layer.cornerRadius = layer.bounds.height / 2
-        }
-    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -66,6 +87,7 @@ class BeerTableViewCell: UITableViewCell {
     
     func config(with model: BeerTableViewCellModel) {
         self.nameLabel.text = model.name
+        self.descriptionLabel.text = model.description
         self.alcoholLabel.text = model.alcoholText
         addImage(of: model.image)
     }

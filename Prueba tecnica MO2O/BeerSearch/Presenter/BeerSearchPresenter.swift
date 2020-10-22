@@ -38,6 +38,7 @@ class BeerSearchPresenter: NSObject {
                 let model = BeerTableViewCellModel(
                     image: beer.image,
                     name: beer.name,
+                    description: beer.description,
                     alcoholText: alcoholText
                 )
                 return .beer(model)
